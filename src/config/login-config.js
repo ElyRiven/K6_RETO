@@ -1,6 +1,6 @@
 export const loginLoadConfig = {
   stages: [
-    { duration: "10s", target: 20 },
+    { duration: "10s", target: 40 },
     { duration: "40s", target: 40 },
     { duration: "10s", target: 0 },
   ],

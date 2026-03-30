@@ -68,9 +68,9 @@ Este comando ejecuta la prueba de carga sobre el endpoint `POST /auth/login` con
 
 | Etapa           | Duración | VUs objetivo |
 | --------------- | -------- | ------------ |
-| Rampa de subida | 15s      | 10           |
-| Carga sostenida | 30s      | 25           |
-| Rampa de bajada | 15s      | 0            |
+| Rampa de subida | 10s      | 40           |
+| Carga sostenida | 40s      | 40           |
+| Rampa de bajada | 10s      | 0            |
 
 ### 3. Umbrales evaluados
 

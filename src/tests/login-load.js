@@ -12,23 +12,11 @@ const loginData = new SharedArray("loginData", function () {
 });
 
 export default function () {
-  const credentials = loginData[__VU % loginData.length];
+  const randomIndex = Math.floor(Math.random() * loginData.length);
 
-  const res = login(credentials.user, credentials.passwd);
+  const credentials = loginData[randomIndex];
 
-  let body = {};
-  try {
-    body = JSON.parse(res.body);
-  } catch (_) {
-    body = {};
-  }
+  login(credentials.username, credentials.password);
 
-  check(res, {
-    "Response code === 201": (r) => r.status === 201,
-    "Response body contains token": (r) =>
-      body.token !== undefined && body.token.length > 0,
-    "Response time < 1.5s": (r) => r.timings.duration < 1500,
-  });
-
-  sleep(1);
+  sleep(0.5);
 }

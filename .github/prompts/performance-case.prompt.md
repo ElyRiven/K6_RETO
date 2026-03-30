@@ -2,53 +2,48 @@
 
 ## Contexto
 
-Necesito que implementes una automatización de API. En la URL `https://automationexercise.com/api_list` puedes encontrar la lista de endpoints disponibles y su documentación (estructura de datos recibida, códigos de respuesta, etc).
+Necesito que implementes una automatización de API. En la URL `https://fakestoreapi.com/auth/login`.
 
 - **URL Base:** https://automationexercise.com
-- **Contenido aceptado:** application/x-www-form-urlencoded
+- **Contenido aceptado:** application/json
 
-## Alcance
+Se provee el siguiente CURL para crear los scripts:
 
-La automatización debe evaluar los siguientes endpoints:
+```
+curl -location --max-time 60 'https://fakestoreapi.com/auth/login'^
+--header 'Content-Type:application/json'^
+--data '{
+  "username": "user",
+  "password": "passwd"
+}'
+```
 
-- Creación de un nuevo usuario en el sistema (POST)
-  **URL:** /api/createAccount
-  Debes revisar la documentación de este endpoint para definir la estructura de datos que recibe.
+Los datos de entrada que se deben parametrizar desde un archivo .csv son:
 
-- Consulta de usuario mediante email (GET)
-  **URL:** /api/getUserDetailByEmail
-  Revisa la documentación del endpoint para definir el parámetro a enviar en la URL
+- Datos inválidos (la API retorna código 401):
+  user, passwd
 
-- Consulta del listado de Productos disponibles (GET)
-  **URL:** /api/productsList
-  Revisa la documentación del endpoint para definir si debes enviar algún parámetro para recibir una respuesta exitosa.
+- Datos válidos (la API retorna código 201):
+
+donero, ewedon
+kevinryan, kev02937@
+johnd, m38rmF$
+derek, jklg*_56
+mor_2314, 83r5^_
+
+El escenario de la prueba al menos debe alcanzar los 20 TPF y debe tener las siguientes validaciones:
+
+- El tiempo de respuesta permitido es de máximo 1.5 segundos
+- Tasa de error aceptable, menor al 3% del total de peticiones.
 
 ## Tareas
 
-Debes generar un script de automatización por cada endpoint y por cada tipo de prueba con las siguientes opciones:
+Debes generar un script de automatización que cumpla con los criterios establecidos y usar los datos desde el archivo `.csv` para realizar el script.
 
-- Smoke Test
-  Definir 15 VUsers y 1 minuto de duración para esta prueba.
-
-- Load Test
-  Subida gradual hasta 50 VUsers en 1:30 minutos y mantener por 3 minutos la carga. Eliminar el total de la carga en 1 minuto.
-
-- Stress Test
-  Subida agresiva de hasta 200 VUsers en 3 minutos para encontrar el punto de ruptura.
-
-- Implementa la generación de datos dinámicos para los endpoints y evitar colisiones de emails.
-
-- Verifica que el status de todas las peticiones a los endpoints devuelvan un estado 200.
-
-## Métricas y Umbrales
-
-- El percentil 95 de todos los endpoints en la métrica `http_req_duration` debe ser inferior a 500ms.
-- La tasa de error de todos los endpoints en la métrica `http_req_failed` debe ser inferior al 1%.
-
-## Datos de prueba
+Establece a tu criterio las opciones que se deben establecer para lograr que la automatización siga los criterios definidos.
 
 ## Objetivo
 
 Debes crear la automatización de pruebas de rendimiento de los endpoints especificados, generando los archivos necesarios en sus correspondientes directorios y los scripts de ejecución.
-Actualiza los scripts del archivo `package.json` para poder ejecutar cada prueba individualmente y que genere reportes individuales por cada endpoint y por cada tipo de prueba.
-Finalmente debes asegurar que el proyecto permita la ejecución correcta de las pruebas y la generación del reporte HTML de la extensión de reportería xk6 con los resultados de rendimiento y sus metricas correspondientes.
+Actualiza los scripts del archivo `package.json` para poder ejecutar la prueba.
+Finalmente debes asegurar que el proyecto permita la ejecución correcta de la prueba y la generación del reporte HTML de la extensión de reportería xk6 con los resultados de rendimiento y sus metricas correspondientes.

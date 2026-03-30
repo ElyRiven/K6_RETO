@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Automation Exercise API - K6 Performance Tests",
   "scripts": {
-    "test": ""
+    "test:load:login": "k6 run --out \"dashboard=export=results/login-load-report.html\" src/tests/login-load.js"
   },
   "keywords": [],
   "author": "",

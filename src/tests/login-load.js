@@ -12,9 +12,7 @@ const loginData = new SharedArray("loginData", function () {
 });
 
 export default function () {
-  const randomIndex = Math.floor(Math.random() * loginData.length);
-
-  const credentials = loginData[randomIndex];
+  const credentials = loginData[__VU % loginData.length];
 
   login(credentials.username, credentials.password);
 
